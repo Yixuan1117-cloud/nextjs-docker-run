@@ -103,9 +103,18 @@ export default function Map() {
                 position={destination}
                 icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
               />
-
-             
-
+              <MarkerClusterer>
+                {(clusterer) =>
+                  rental.map((house) => (
+                    <Marker
+                      key={house.lat}
+                      position={house}
+                      clusterer={clusterer}
+                      onClick={() => {fetchDirections(house)}}
+                    />
+                  ))
+                }
+              </MarkerClusterer>
               <Circle center={destination} radius={15000} options={closeOptions} />
               <Circle center={destination} radius={20000} options={middleOptions} />
               <Circle center={destination} radius={35000} options={farOptions} />
