@@ -2,8 +2,9 @@ FROM node:14-alpine AS deps
 WORKDIR /app
 
 COPY package.json ./
-RUN npm install
+RUN npm install --legacy-peer-deps
 COPY . .
+RUN npx patch-package @react-google-maps/api
 
 
 
